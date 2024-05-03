@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rule;
+
 
 class UsersController extends Controller
 {
@@ -19,7 +21,7 @@ class UsersController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -31,12 +33,12 @@ class UsersController extends Controller
         if (auth()->user()->type != 1) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
-        
+
         $users = User::orderBy('first_name', 'asc')->get();
         foreach ($users as $user) {
-            $user->full_name = $user->first_name.' '.$user->middle_name.' '.$user->last_name;
+            $user->full_name = $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name;
         }
-        
+
         return view('admin.users')->with('users', $users);
     }
 
@@ -49,12 +51,12 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         // return $request; //* test case
-        
+
         // Check if user trying to access page is admin
         if (auth()->user()->type != 1) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
-        
+
         // Validate request details
         $newUser = $request->validate([
             'first_name' => 'required|string|max:255',
@@ -63,13 +65,13 @@ class UsersController extends Controller
             'phone_number' => 'required|numeric|unique:users',
             'email' => 'required|string|email|max:255',
             'password' => ['required', 'confirmed', Password::min(6)],
-            'dob' => 'required|string|date|before:'.Carbon::today(),
+            'dob' => 'required|string|date|before:' . Carbon::today(),
             'gender' => 'required|string|min:4|max:6|alpha',
             'address' => 'required|string|max:255',
             'emergency' => 'required|numeric',
             'type' => 'numeric',
         ]);
-        
+
         // Add new user to dbase
         $user = new User();
         $user->first_name = $newUser['first_name'];
@@ -86,10 +88,10 @@ class UsersController extends Controller
             $user->type = $newUser['type'];
         }
         $user->save();
-        
+
         return redirect('/users')->with('success', 'New user created!');
     }
-    
+
     /**
      * Display the user to be deleted.
      *
@@ -99,8 +101,8 @@ class UsersController extends Controller
     public function showToRemove($id)
     {
         $user = User::find($id);
-        $user->full_name = $user->first_name.' '.$user->middle_name.' '.$user->last_name;
-        
+        $user->full_name = $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name;
+
         return view('admin.modify.delete_user')->with('user', $user);
     }
 
@@ -113,7 +115,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        
+
         return view('admin.modify.edit_user')->with('user', $user);
     }
 
@@ -127,27 +129,33 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         // return $request; //! test case
-        
+
         // Check if user trying to access page is admin
         if (auth()->user()->type != 1) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
-        
+
         // Validate request details
         $data = $request->validate([
             'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'middle_name' => 'required|string|max:255',
+            // 'last_name' => 'required|string|max:255',
+            // 'middle_name' => 'required|string|max:255',
             'phone_number' => 'required',
             'email' => 'required|string|email|max:255',
-            'password' => ['required', 'confirmed', Password::min(6)],
-            'dob' => 'required|string|date|before:'.Carbon::today(),
+            // 'password' => ['required', 'confirmed', Password::min(6)],
+            // 'dob' => 'required|string|date|before:' . Carbon::today(),
             'gender' => 'required|string|min:4|max:6|alpha',
             'address' => 'required|string|max:255',
             'emergency' => 'required',
             'type' => 'numeric',
         ]);
-        
+
+        // Set default values for empty or missing fields
+        $data['last_name'] = $data['last_name'] ?? '';
+        $data['middle_name'] = $data['middle_name'] ?? '';
+        $data['dob'] = $data['dob'] ?? '0000-00-00';
+        $data['emergency'] = $data['emergency'] ?? 00000000000;
+
         // Add new user to dbase
         $user = User::find($id);
         $user->first_name = $data['first_name'];
@@ -155,14 +163,14 @@ class UsersController extends Controller
         $user->middle_name = $data['middle_name'];
         $user->phone_number = $data['phone_number'];
         $user->email = $data['email'];
-        $user->password = Hash::make($data['password']);
-        $user->dob = $data['dob'];
+        // $user->password = Hash::make($data['password']);
+        // $user->dob = $data['dob'];
         $user->gender = $data['gender'];
         $user->address = $data['address'];
         $user->emergency = $data['emergency'];
         $user->type = $data['type'];
         $user->update();
-        
+
         return redirect('/users')->with('success', 'User details updated!');
     }
 
@@ -175,7 +183,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         // return $id; //! Test case
-        
+
         // Check if user trying to access page is admin
         if (auth()->user()->type != 1) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
@@ -183,7 +191,7 @@ class UsersController extends Controller
 
         $user = User::find($id);
         $user->delete();
-        
+
         return redirect('/users')->with('success', 'User Removed!');
     }
 }

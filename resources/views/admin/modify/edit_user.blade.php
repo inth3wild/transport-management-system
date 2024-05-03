@@ -1,4 +1,4 @@
-<form role="form" method="POST" action="{{ url('/users/'. $user->id) }}" id="editUserForm">
+<form role="form" method="POST" action="{{ url('/users/' . $user->id) }}" id="editUserForm">
     @csrf
     <div class="form-group mb-3">
         <label class="control-label">First Name</label>
@@ -6,20 +6,20 @@
     </div>
     <div class="form-group mb-3">
         <label class="form-label">Last Name</label>
-        <input type="text" name="last_name" class="form-control border ps-2" value="{{$user->last_name}}" required autocomplete="family-name">
+        <input type="text" name="last_name" class="form-control border ps-2" value="{{$user->last_name}}" autocomplete="family-name">
     </div>
     <div class="form-group mb-3">
         <label class="form-label">Middle Name</label>
-        <input type="text" name="middle_name" class="form-control border ps-2" value="{{$user->middle_name}}" required autocomplete="additional-name">
+        <input type="text" name="middle_name" class="form-control border ps-2" value="{{$user->middle_name}}" autocomplete="additional-name">
     </div>
     <div class="form-check form-check-inline text-start ps-0">
-        <input class="form-check-input" type="radio" name="gender" value="Male" id="Male" required
+        <input class="form-check-input" type="radio" name="gender" value="Male" id="Male"
         @if ($user->gender == 'Male')
             checked
         @endif
         >
         <label class="form-check-label" for="Male">Male</label>
-        <input class="form-check-input" type="radio" name="gender" value="Female" id="Female" required
+        <input class="form-check-input" type="radio" name="gender" value="Female" id="Female"
         @if ($user->gender == 'Female')
             checked
         @endif
@@ -36,11 +36,11 @@
     </div>
     <div class="form-group mb-3">
         <label class="form-label">Password</label>
-        <input type="password" name="password" class="form-control border ps-2" required autocomplete="new-password">
+        <input type="password" name="password" class="form-control border ps-2" autocomplete="new-password">
     </div>
     <div class="form-group mb-3">
         <label class="form-label">Confirm Password</label>
-        <input type="password" name="password_confirmation" class="form-control border ps-2" required autocomplete="new-password">
+        <input type="password" name="password_confirmation" class="form-control border ps-2" autocomplete="new-password">
     </div>
     <small class="form-text" style="color:#e91e63;">
         Your password must be 6 characters long.
@@ -59,6 +59,12 @@
         @endif
         >
         <label class="form-check-label" for="0">Passenger</label>
+        <input class="form-check-input" type="radio" name="type" value="2" id="2"
+        @if ($user->type == 2)
+            checked
+        @endif
+        >
+        <label class="form-check-label" for="2">Vendor</label>
     </div>
     <div class="form-group mt-3 mb-3">
         <label class="form-label">Date of Birth</label>

@@ -47,6 +47,8 @@
                           <td class="align-middle text-center text-sm">
                             @if ($user->type == 1)  
                               <span class="badge badge-sm bg-gradient-success">Admin</span>
+                            @elseif ($user->type == 2)
+                              <span class="badge badge-sm bg-gradient-info">Vendor</span>
                             @else
                               <span class="badge badge-sm bg-gradient-secondary">Passenger</span>
                             @endif
