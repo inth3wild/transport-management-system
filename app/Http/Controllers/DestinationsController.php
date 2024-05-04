@@ -16,7 +16,7 @@ class DestinationsController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the destinations on admin dashboard.
      *
@@ -25,17 +25,22 @@ class DestinationsController extends Controller
     public function index()
     {
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
-        
+
         $destinations = Destination::orderBy('name', 'asc')->get();
-        
+
         $data = [
             'destinations' => $destinations,
         ];
-        
-        return view('admin.destinations')->with($data);
+
+        if (auth()->user()->type == 1) {
+            return view('admin.destinations')->with($data);
+        } elseif (auth()->user()->type == 2) {
+            return view('vendor.destinations')->with($data);
+        }
+
     }
 
     /**
@@ -47,23 +52,23 @@ class DestinationsController extends Controller
     public function store(Request $request)
     {
         // return $request; //! Test case
-        
+
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
-        
+
         // Validate request details
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'amount' => 'required',
         ]);
-        
+
         $destination = new Destination();
         $destination->name = $data['name'];
         $destination->amount = $data['amount'];
         $destination->save();
-        
+
         return redirect('/destinations')->with('success', 'A new destination was successfully added!');
     }
 
@@ -76,18 +81,18 @@ class DestinationsController extends Controller
     public function edit($id)
     {
         // return $id; //! Test case
-        
+
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
-        
+
         $destination = Destination::find($id);
-        
+
         $data = [
             'destination' => $destination,
         ];
-        
+
         return view('admin.modify.edit_destination')->with($data);
     }
 
@@ -101,23 +106,23 @@ class DestinationsController extends Controller
     public function update(Request $request, $id)
     {
         // return $request; //! Test case
-        
+
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
-        
+
         // Validate request details
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'amount' => 'required',
         ]);
-        
+
         $destination = Destination::find($id);
         $destination->name = $data['name'];
         $destination->amount = $data['amount'];
         $destination->save();
-        
+
         return redirect('/destinations')->with('success', 'Destination updated!');
     }
 
@@ -130,13 +135,13 @@ class DestinationsController extends Controller
     public function destroy($id)
     {
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
 
         $destination = Destination::find($id);
         $destination->delete();
-        
+
         return redirect('/destinations')->with('success', 'Destination Removed!');
     }
 }

@@ -151,7 +151,19 @@ class TripsController extends Controller
         // return $id; //! Test case
 
         $destination = Destination::find($id);
-        $vehicles = $destination->vehicles->pluck('plate_number', 'id');
+        // $vehicles = $destination->vehicles->pluck('plate_number', 'id');
+        $vehicles = $destination->vehicles->map(function ($vehicle) {
+            $pattern = '/\((.*?)\)/'; // Regular expression to match vendor name inside braces
+            preg_match($pattern, $vehicle->name, $matches);
+
+            if (count($matches) > 1) {
+                $matchedString = '(' . $matches[1] . ')';
+            } else {
+                $matchedString = '';
+            }
+            return ['id' => $vehicle->id, 'name' => $vehicle->plate_number . ' ' . $matchedString];
+        })->pluck('name', 'id');
+
 
         $data = [
             'destination' => $destination,

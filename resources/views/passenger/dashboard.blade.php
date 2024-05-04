@@ -110,14 +110,14 @@
                     </div>
 
                     {!! Form::open([
-                        'action' => 'App\Http\Controllers\TripsController@store',
-                        'method' => 'POST',
-                        'id' => 'bookTicketForm',
-                    ]) !!}
+    'action' => 'App\Http\Controllers\TripsController@store',
+    'method' => 'POST',
+    'id' => 'bookTicketForm',
+]) !!}
                     @csrf
                     <div class="form-group">
                         {{ Form::label('depature_date', 'Depature date', ['class' => 'control-label']) }}
-                        {{ Form::date('depature_date', \Carbon\Carbon::now(), ['class' => 'form-control border ps-2','max' => \Carbon\Carbon::now()->addDays(5)->toDateString(),'min' => \Carbon\Carbon::now()->toDateString()]) }}
+                        {{ Form::date('depature_date', \Carbon\Carbon::now(), ['class' => 'form-control border ps-2', 'max' => \Carbon\Carbon::now()->addDays(5)->toDateString(), 'min' => \Carbon\Carbon::now()->toDateString()]) }}
                     </div>
                     <div class="form-group mb-3">
                         {{ Form::label('destination_id', 'Destination', ['class' => 'control-label']) }}

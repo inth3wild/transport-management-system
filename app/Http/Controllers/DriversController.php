@@ -17,7 +17,7 @@ class DriversController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -26,16 +26,20 @@ class DriversController extends Controller
     public function index()
     {
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
-        
+
         $drivers = Driver::orderBy('first_name', 'asc')->get();
         foreach ($drivers as $driver) {
-            $driver->full_name = $driver->first_name.' '.$driver->last_name;
+            $driver->full_name = $driver->first_name . ' ' . $driver->last_name;
         }
-        
-        return view('admin.drivers')->with('drivers', $drivers);
+
+        if (auth()->user()->type == 1) {
+            return view('admin.drivers')->with('drivers', $drivers);
+        } elseif (auth()->user()->type == 2) {
+            return view('vendor.drivers')->with('drivers', $drivers);
+        }
     }
 
     /**
@@ -47,10 +51,10 @@ class DriversController extends Controller
     public function store(Request $request)
     {
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
-        
+
         // Validate request details
         $this->validate($request, [
             'f_name' => 'required',
@@ -62,7 +66,7 @@ class DriversController extends Controller
             'lga' => 'required',
             'experience' => 'required|numeric|min:1|max:15',
         ]);
-        
+
         // Add driver
         $driver = new Driver();
         $driver->first_name = $request->input('f_name');
@@ -74,7 +78,7 @@ class DriversController extends Controller
         $driver->lga = $request->input('lga');
         $driver->experience = $request->input('experience');
         $driver->save();
-        
+
         return redirect('/drivers')->with('success', 'A new driver was successfully added!');
     }
 
@@ -87,8 +91,8 @@ class DriversController extends Controller
     public function showToRemove($id)
     {
         $driver = Driver::find($id);
-        $driver->full_name = $driver->first_name.' '.$driver->last_name;
-        
+        $driver->full_name = $driver->first_name . ' ' . $driver->last_name;
+
         return view('admin.modify.delete_driver')->with('driver', $driver);
     }
 
@@ -101,7 +105,7 @@ class DriversController extends Controller
     public function edit($id)
     {
         $driver = Driver::find($id);
-        
+
         return view('admin.modify.edit_driver')->with('driver', $driver);
     }
 
@@ -115,24 +119,24 @@ class DriversController extends Controller
     public function update(Request $request, $id)
     {
         // return $request; //! Test case
-        
+
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
-        
+
         // Validate request details
         $data = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'dob' => 'required|string|date|before:'.Carbon::today(),
+            'dob' => 'required|string|date|before:' . Carbon::today(),
             'address' => 'required|string|max:255',
             'phone_number' => 'required',
             'state' => 'required|string|max:255',
             'lga' => 'required|string|max:255',
             'experience' => 'required',
         ]);
-        
+
         // Add new driver to dbase
         $driver = Driver::find($id);
         $driver->first_name = $data['first_name'];
@@ -144,7 +148,7 @@ class DriversController extends Controller
         $driver->lga = $data['lga'];
         $driver->experience = $data['experience'];
         $driver->update();
-        
+
         return redirect('/drivers')->with('success', 'Driver details updated!');
     }
 
@@ -157,15 +161,15 @@ class DriversController extends Controller
     public function destroy($id)
     {
         // return $id; //! Test case
-        
+
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
 
         $driver = Driver::find($id);
         $driver->delete();
-        
+
         return redirect('/drivers')->with('success', 'Driver Removed!');
     }
 }

@@ -28,7 +28,7 @@ class VehiclesController extends Controller
     public function index()
     {
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
 
@@ -46,13 +46,19 @@ class VehiclesController extends Controller
         // Fetching destinations with Eloquent
         $destinations = Destination::pluck('name', 'id');
 
+
         $data = [
             'drivers' => $drivers,
             'vehicles' => $vehicles,
             'destinations' => $destinations,
+            'first_name' => auth()->user()->first_name,
         ];
 
-        return view('admin.vehicles', compact('drivers'))->with($data);
+        if (auth()->user()->type == 1) {
+            return view('admin.vehicles', compact('drivers'))->with($data);
+        } elseif (auth()->user()->type == 2) {
+            return view('vendor.vehicles', compact('drivers'))->with($data);
+        }
     }
 
     /**
@@ -66,7 +72,7 @@ class VehiclesController extends Controller
         // return $request; //! Test Case
 
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
 
@@ -74,7 +80,8 @@ class VehiclesController extends Controller
         $newVehicle = $request->validate([
             'name' => 'required',
             'model' => 'required',
-            'plate_number' => 'required|min:7|max:8|alpha_num|unique:vehicles',
+            // 'plate_number' => 'required|min:7|max:8|alpha_num|unique:vehicles',
+            'plate_number' => 'required|unique:vehicles',
             'seats' => 'required|digits:2|between:14,25|numeric',
             'driver' => 'required|unique:vehicles,driver_id',
             'destination_id' => 'required',
@@ -169,7 +176,7 @@ class VehiclesController extends Controller
         // return $request; //! Test case
 
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
 
@@ -205,7 +212,7 @@ class VehiclesController extends Controller
     public function destroy($id)
     {
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
 
