@@ -123,6 +123,7 @@
     </div>
   </main>
   @include('inc.scripts')
+  @yield('script')
 </body>
 
 </html>

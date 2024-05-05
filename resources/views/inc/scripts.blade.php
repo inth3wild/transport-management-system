@@ -147,7 +147,7 @@
 @endif
 
 {{-- Passenger Dashboard Scripts --}}
-@if (request()->is('dashboard') && Auth::user()->type == 0)
+@if (request()->is('dashboard') && (Auth::user()->type == 0 || Auth::user()->type == 2))
     <script>
         $(document).ready(function() {
             $('#bookTicketSubmit').hide();

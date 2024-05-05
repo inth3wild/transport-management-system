@@ -169,11 +169,13 @@
                               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Passenger</th>
                               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Booked On</th>
                               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Destination</th>
-                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Depature date</th>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Departure date</th>
+                              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">View</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($tickets as $ticket)
+                            @if (strstr($ticket->vehicle->name, $userName) !== false)
                             <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
@@ -199,7 +201,18 @@
                                 <td class="text-sm">
                                     <h6 class="text-sm font-weight-bold mb-0">{{Carbon\Carbon::create($ticket->depature_date)->format('D jS M\, Y')}}</h6>
                                 </td>
+                                <td class="text-sm">
+                                  <a href="" class="text-info text-lg viewTicketBtn"
+                                      data-toggle="modal" data-target="#viewTicketModal"
+                                      data-id="{{ $ticket->id }}">
+                                      <i class="fas fa-eye" style="font-size: 1.3em;"
+                                          title="View Ticket"></i>
+                                  </a>
+                                </td>
                             </tr>
+                            @else
+                              <tr class="text-center"></tr>
+                            @endif
                             @endforeach
                         </tbody>
                       </table>
@@ -317,4 +330,17 @@
         </div>
     </div>
   </div>
+
+  <!-- View Ticket Modal-->
+  <div class="modal fade" id="viewTicketModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body p-0" id="viewTicketModalBody">
+                <div class="d-flex justify-content-between mb-2">
+                    {{-- AJAX --}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
