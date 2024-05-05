@@ -30,7 +30,7 @@ class UsersController extends Controller
     public function index()
     {
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2 && auth()->user()->type != 0) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
 
@@ -39,7 +39,19 @@ class UsersController extends Controller
             $user->full_name = $user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name;
         }
 
-        return view('admin.users')->with('users', $users);
+        $data = [
+            'users' => $users,
+            'userName' => auth()->user()->first_name,
+        ];
+
+
+        if (auth()->user()->type == 1) {
+            return view('admin.users')->with('users', $users);
+        } elseif (auth()->user()->type == 2) {
+            return view('vendor.users')->with($data);
+        } elseif (auth()->user()->type == 0) {
+            return view('passenger.users')->with($data);
+        }
     }
 
     /**

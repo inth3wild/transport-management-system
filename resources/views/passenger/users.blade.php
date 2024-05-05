@@ -1,4 +1,4 @@
-@extends('layouts.vendor')
+@extends('layouts.passenger')
 
 @section('content')
     <div class="row justify-content-around">

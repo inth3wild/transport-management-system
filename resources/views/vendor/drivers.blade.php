@@ -154,8 +154,8 @@
                     </div>
 
                     <div class="form-group">
-                        {{Form::label('vendor', 'Vendor', ['class' => 'control-label'])}}
-                        {{Form::text('vendor', '', ['class' => 'form-control border ps-2', 'placeholder' => 'Transportation Vendor'])}}
+                        {{Form::label('vendor', 'Vendor Name', ['class' => 'control-label'])}}
+                        {{Form::text('vendor', $userName, ['class' => 'form-control border ps-2', 'placeholder' => 'Transportation Vendor'])}}
                     </div>
       
                     <!-- <div class="form-group">
