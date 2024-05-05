@@ -24,6 +24,7 @@
                   </thead>
                   <tbody>
                     @foreach ($drivers as $driver)
+                    @if (strstr($driver->vendor, $userName) !== false)
                       <tr>
                         <td>
                           <div class="d-flex px-2 py-1">
@@ -42,7 +43,7 @@
                         </td>
                         <td class="align-middle text-center text-sm">
                           <p class="text-xs font-weight-bold mb-0">{{$driver->state}}</p>
-                          <p class="text-xs text-secondary mb-0">{{$driver->lga}}</p>
+                          <p class="text-xs text-secondary mb-0">{{$driver->vendor}}</p>
                         </td>
                         <td class="align-middle text-center">
                           <span class="text-secondary text-xs font-weight-bold">{{$driver->experience}}</span>
@@ -56,6 +57,9 @@
                           </a>
                         </td>
                       </tr>
+                    @else
+                      <tr class="text-center"></tr>
+                    @endif
                     @endforeach
                   </tbody>
                 </table>
@@ -97,8 +101,13 @@
                     </div>
                     <div class="form-group">
                       <label class="control-label">State of Origin</label>
-                      <select
+                      <!-- <select
                         onchange="toggleLGA(this);"
+                        name="state"
+                        id="state"
+                        class="form-control border ps-2"
+                      > -->
+                      <select
                         name="state"
                         id="state"
                         class="form-control border ps-2"
@@ -143,8 +152,13 @@
                         <option value="Zamfara">Zamafara</option>
                       </select>
                     </div>
-      
+
                     <div class="form-group">
+                        {{Form::label('vendor', 'Vendor', ['class' => 'control-label'])}}
+                        {{Form::text('vendor', '', ['class' => 'form-control border ps-2', 'placeholder' => 'Transportation Vendor'])}}
+                    </div>
+      
+                    <!-- <div class="form-group">
                       <label class="control-label">LGA of Origin</label>
                       <select
                         name="lga"
@@ -153,7 +167,7 @@
                       >
                       <option value="" selected="selected">-Select state first-</option>
                       </select>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                       {{Form::label('experience', 'Experience(Years)', ['class' => 'control-label'])}}
                       {{Form::number('experience', '', ['class' => 'form-control border ps-2'])}}

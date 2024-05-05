@@ -1,4 +1,4 @@
-<form role="form" method="POST" action="{{ url('/drivers/'. $driver->id) }}" id="editDriverForm">
+<form role="form" method="POST" action="{{ url('/drivers/' . $driver->id) }}" id="editDriverForm">
   @csrf
   <div class="form-group mb-3">
       <label class="control-label">First Name</label>
@@ -22,8 +22,13 @@
   </div>
   <div class="form-group">
     <label class="control-label">State of Origin</label>
-    <select
+    <!-- <select
       onchange="toggleLGA(this);"
+      name="state"
+      id="state"
+      class="form-control border ps-2"
+    > -->
+    <select
       name="state"
       id="state"
       class="form-control border ps-2"
@@ -70,6 +75,11 @@
   </div>
 
   <div class="form-group">
+    {{Form::label('vendor', 'Vendor', ['class' => 'control-label'])}}
+    {{Form::text('vendor', '', ['class' => 'form-control border ps-2', 'placeholder' => 'Transportation Vendor'])}}
+  </div>
+
+  <!-- <div class="form-group">
     <label class="control-label">LGA of Origin</label>
     <select
       name="lga"
@@ -78,7 +88,7 @@
     >
     <option value="{{$driver->lga}}" selected>{{$driver->lga}}</option>
     </select>
-  </div>
+  </div> -->
   <div class="form-group mb-3">
       <label class="form-label">Experience(Years)</label>
       <input type="number" name="experience" class="form-control border ps-2" value="{{$driver->experience}}" required>

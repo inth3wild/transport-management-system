@@ -27,6 +27,7 @@
                         </thead>
                         <tbody>
                             @foreach ($vehicles as $vehicle)
+                            @if (strstr($vehicle->name, $first_name) !== false)
                             <tr>
                                 <td>
                                     <div class="d-flex px-2 py-1">
@@ -48,7 +49,7 @@
                                 <td class="align-middle text-sm">
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="mb-0 text-sm">{{$vehicle->destination->name}}</h6>
-                                        <p class="text-xs font-weight-bold mb-0">{{$vehicle->destination->amount}}</p>
+                                        <p class="text-xs font-weight-bold mb-0">₦ {{$vehicle->destination->amount}}</p>
                                     </div>
                                 </td>
                                 <td class="align-middle text-center">
@@ -63,6 +64,9 @@
                                     </a>
                                 </td>
                             </tr>
+                            @else
+                                <tr class="text-center"></tr>
+                            @endif
                             @endforeach
                         </tbody>
                         </table>

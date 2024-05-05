@@ -21,7 +21,7 @@ class Driver extends Model
         'address',
         'phone_number',
         'state',
-        'lga',
+        'vendor',
         'experience',
         'vehicle_id',
     ];

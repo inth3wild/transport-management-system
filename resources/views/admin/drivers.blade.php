@@ -42,7 +42,7 @@
                         </td>
                         <td class="align-middle text-center text-sm">
                           <p class="text-xs font-weight-bold mb-0">{{$driver->state}}</p>
-                          <p class="text-xs text-secondary mb-0">{{$driver->lga}}</p>
+                          <p class="text-xs text-secondary mb-0">{{$driver->vendor}}</p>
                         </td>
                         <td class="align-middle text-center">
                           <span class="text-secondary text-xs font-weight-bold">{{$driver->experience}}</span>
@@ -68,7 +68,7 @@
         </div>
       </div>
         
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
             <div class="card">
                 
                 <div class="card-body">
@@ -99,6 +99,11 @@
                       <label class="control-label">State of Origin</label>
                       <select
                         onchange="toggleLGA(this);"
+                        name="state"
+                        id="state"
+                        class="form-control border ps-2"
+                      > -->
+                      <!-- <select
                         name="state"
                         id="state"
                         class="form-control border ps-2"
@@ -143,8 +148,12 @@
                         <option value="Zamfara">Zamafara</option>
                       </select>
                     </div>
-      
+
                     <div class="form-group">
+                        {{Form::label('vendor', 'Vendor', ['class' => 'control-label'])}}
+                        {{Form::text('vendor', '', ['class' => 'form-control border ps-2', 'placeholder' => 'Transportation Vendor'])}}
+                    </div> -->
+                    <!-- <div class="form-group">
                       <label class="control-label">LGA of Origin</label>
                       <select
                         name="lga"
@@ -153,18 +162,18 @@
                       >
                       <option value="" selected="selected">-Select state first-</option>
                       </select>
-                    </div>
-                    <div class="form-group">
+                    </div> -->
+                    <!-- <div class="form-group">
                       {{Form::label('experience', 'Experience(Years)', ['class' => 'control-label'])}}
                       {{Form::number('experience', '', ['class' => 'form-control border ps-2'])}}
                     </div>
                     <div class="d-flex justify-content-end mt-3">
                       {{Form::submit('Add Driver', ['class' => 'btn btn-sm btn-outline-success'])}}
                     </div>
-                  {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
+                  {!! Form::close() !!} -->
+                <!-- </div> -->
+            <!-- </div> -->
+        <!-- </div> -->
     </div>
 
 <!-- Edit Driver Modal-->

@@ -20,7 +20,7 @@ class DriverFactory extends Factory
             'address' => $this->faker->streetAddress(),
             'phone_number' => $this->faker->unique()->phoneNumber(),
             'state' => $this->faker->city(),
-            'lga' => 'Example LGA',
+            'vendor' => 'Sample Company',
             'experience' => $this->faker->randomDigitNotZero(),
         ];
     }

@@ -35,10 +35,17 @@ class DriversController extends Controller
             $driver->full_name = $driver->first_name . ' ' . $driver->last_name;
         }
 
+        $data = [
+            'drivers' => $drivers,
+            'userName' => auth()->user()->first_name,
+        ];
+
         if (auth()->user()->type == 1) {
-            return view('admin.drivers')->with('drivers', $drivers);
+            // return view('admin.drivers')->with('drivers', $drivers);
+            return view('admin.drivers')->with($data);
         } elseif (auth()->user()->type == 2) {
-            return view('vendor.drivers')->with('drivers', $drivers);
+            // return view('vendor.drivers')->with('drivers', $drivers);
+            return view('vendor.drivers')->with($data);
         }
     }
 
@@ -63,7 +70,7 @@ class DriversController extends Controller
             'address' => 'required',
             'phone' => 'required',
             'state' => 'required',
-            'lga' => 'required',
+            'vendor' => 'required',
             'experience' => 'required|numeric|min:1|max:15',
         ]);
 
@@ -75,7 +82,7 @@ class DriversController extends Controller
         $driver->address = $request->input('address');
         $driver->phone_number = $request->input('phone');
         $driver->state = $request->input('state');
-        $driver->lga = $request->input('lga');
+        $driver->vendor = $request->input('vendor');
         $driver->experience = $request->input('experience');
         $driver->save();
 
@@ -133,7 +140,7 @@ class DriversController extends Controller
             'address' => 'required|string|max:255',
             'phone_number' => 'required',
             'state' => 'required|string|max:255',
-            'lga' => 'required|string|max:255',
+            'vendor' => 'required|string|max:255',
             'experience' => 'required',
         ]);
 
@@ -145,7 +152,7 @@ class DriversController extends Controller
         $driver->address = $data['address'];
         $driver->phone_number = $data['phone_number'];
         $driver->state = $data['state'];
-        $driver->lga = $data['lga'];
+        $driver->vendor = $data['vendor'];
         $driver->experience = $data['experience'];
         $driver->update();
 

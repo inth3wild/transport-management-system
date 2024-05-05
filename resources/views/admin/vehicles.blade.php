@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-around">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-gradient-light shadow-primary border-radius-lg pt-4 pb-3 d-flex p-4">
@@ -74,7 +74,7 @@
                 </div>
               </div>
             </div>
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
             
             <div class="card">
                 
@@ -151,7 +151,7 @@
                 {!! Form::close() !!}
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <!-- Edit Vehicle Modal-->
