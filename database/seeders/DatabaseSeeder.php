@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         if (App::environment('local')) {
-            \App\Models\Driver::factory(5)->create();
-            \App\Models\Destination::factory(5)->create();
-            \App\Models\Vehicle::factory(5)->create();
+            \App\Models\Driver::factory(2)->create();
+            \App\Models\Destination::factory(2)->create();
+            \App\Models\Vehicle::factory(2)->create();
         }
 
         $this->call([

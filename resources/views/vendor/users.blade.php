@@ -18,7 +18,7 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Contact</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Level</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Emergency</th>
+                        <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Emergency</th> -->
                         <th class="text-primary text-center text-uppercase text-xxs font-weight-bolder opacity-7">Option</th>
                       </tr>
                     </thead>
@@ -54,9 +54,9 @@
                               <span class="badge badge-sm bg-gradient-secondary">Passenger</span>
                             @endif
                           </td>
-                          <td class="align-middle text-center">
+                          <!-- <td class="align-middle text-center">
                             <span class="text-secondary text-xs font-weight-bold">{{$user->emergency}}</span>
-                          </td>
+                          </td> -->
                           <td class="align-middle text-center">
                             <a href="" class="text-secondary font-weight-bold text-xs editUserBtn" data-toggle="modal" data-target="#editUserModal" data-id="{{$user->id}}">
                               <i class="material-icons opacity-10 text-info">edit</i>
@@ -162,7 +162,7 @@
   <div class="modal-dialog" role="document">
       <div class="modal-content">
           <div class="modal-header">
-              <h4 class="modal-title text-primary">Edit User</h4>
+              <h4 class="modal-title text-primary">Edit Profile</h4>
               <a class="close" type="button" data-dismiss="modal" aria-label="Close">
                   <i class="material-icons opacity-10 text-info" style="font-size: 2.0em">&times</i>
               </a>

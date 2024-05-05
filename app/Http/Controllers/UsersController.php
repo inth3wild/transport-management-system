@@ -128,7 +128,13 @@ class UsersController extends Controller
     {
         $user = User::find($id);
 
-        return view('admin.modify.edit_user')->with('user', $user);
+        if (auth()->user()->type == 1) {
+            return view('admin.modify.edit_user')->with('user', $user);
+        } elseif (auth()->user()->type == 2) {
+            return view('vendor.modify.edit_user')->with('user', $user);
+        } else {
+            return view('passenger.modify.edit_user')->with('user', $user);
+        }
     }
 
     /**
@@ -143,30 +149,34 @@ class UsersController extends Controller
         // return $request; //! test case
 
         // Check if user trying to access page is admin
-        if (auth()->user()->type != 1) {
+        if (auth()->user()->type != 1 && auth()->user()->type != 2 && auth()->user()->type != 0) {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
 
         // Validate request details
         $data = $request->validate([
-            'first_name' => 'required|string|max:255',
+            'first_name' => 'max:255',
+            'last_name' => 'max:255',
+            'middle_name' => 'max:255',
             // 'last_name' => 'required|string|max:255',
             // 'middle_name' => 'required|string|max:255',
             'phone_number' => 'required',
             'email' => 'required|string|email|max:255',
-            // 'password' => ['required', 'confirmed', Password::min(6)],
+            'password' => 'max:255',
             // 'dob' => 'required|string|date|before:' . Carbon::today(),
             'gender' => 'required|string|min:4|max:6|alpha',
             'address' => 'required|string|max:255',
-            'emergency' => 'required',
+            'emergency' => 'max:255',
             'type' => 'numeric',
         ]);
 
         // Set default values for empty or missing fields
+        $data['first_name'] = $data['first_name'] ?? auth()->user()->first_name;
         $data['last_name'] = $data['last_name'] ?? '';
         $data['middle_name'] = $data['middle_name'] ?? '';
         $data['dob'] = $data['dob'] ?? '0000-00-00';
         $data['emergency'] = $data['emergency'] ?? 00000000000;
+        $data['password'] = $data['password'] ?? 'password';
 
         // Add new user to dbase
         $user = User::find($id);
@@ -175,7 +185,7 @@ class UsersController extends Controller
         $user->middle_name = $data['middle_name'];
         $user->phone_number = $data['phone_number'];
         $user->email = $data['email'];
-        // $user->password = Hash::make($data['password']);
+        $user->password = Hash::make($data['password']);
         // $user->dob = $data['dob'];
         $user->gender = $data['gender'];
         $user->address = $data['address'];

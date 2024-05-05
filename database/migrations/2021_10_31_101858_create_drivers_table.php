@@ -21,7 +21,7 @@ class CreateDriversTable extends Migration
             $table->text('address');
             $table->string('phone_number');
             $table->tinyText('state');
-            $table->tinyText('lga');
+            $table->tinyText('vendor');
             $table->tinyInteger('experience');
             $table->integer('vehicle_id')->nullable();
             $table->timestamps();

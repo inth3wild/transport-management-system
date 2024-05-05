@@ -162,7 +162,7 @@
   <div class="modal-dialog" role="document">
       <div class="modal-content">
           <div class="modal-header">
-              <h4 class="modal-title text-primary">Edit User</h4>
+              <h4 class="modal-title text-primary">Edit Profile</h4>
               <a class="close" type="button" data-dismiss="modal" aria-label="Close">
                   <i class="material-icons opacity-10 text-info" style="font-size: 2.0em">&times</i>
               </a>

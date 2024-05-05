@@ -22,7 +22,7 @@ class VehicleFactory extends Factory
         $randomChoice = $this->faker->numberBetween(0, 4);
 
         return [
-            "name" => $cars[$randomChoice],
+            "name" => $cars[$randomChoice] . ' - (Sample Company)',
             "model" => $models[$randomChoice],
             "plate_number" => $this->faker->regexify('[A-Z]{3}-[0-9]{3}[A-Z]{2}'),
             "no_of_seats" => $this->faker->numberBetween(14, 25),

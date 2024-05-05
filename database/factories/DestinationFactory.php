@@ -13,8 +13,13 @@ class DestinationFactory extends Factory
      */
     public function definition()
     {
+        $destinations = ['Lagos', 'Abuja'];
+        $randomChoice = $this->faker->numberBetween(0, 1);
+
+
         return [
-            "name" => $this->faker->city() . ' to ' . $this->faker->city(),
+            // "name" => $this->faker->city() . ' to ' . $this->faker->city(),
+            "name" => $destinations[$randomChoice],
             "amount" => $this->faker->numberBetween(4000, 17000)
         ];
     }
