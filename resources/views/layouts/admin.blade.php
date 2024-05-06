@@ -51,30 +51,30 @@
             <span class="nav-link-text ms-1">Users</span>
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link text-white " href="{{url('/drivers')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-steering-wheel" style="font-size:1.4em;"></i>
             </div>
             <span class="nav-link-text ms-1">Drivers</span>
           </a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a class="nav-link text-white " href="{{url('/vehicles')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">electric_rickshaw</i>
             </div>
             <span class="nav-link-text ms-1">Vehicles</span>
           </a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a class="nav-link text-white " href="{{url('/destinations')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-map-marker-alt" style="font-size:1.4em;"></i>
             </div>
             <span class="nav-link-text ms-1">Destinations</span>
           </a>
-        </li>
+        </li> -->
        
       </ul>
     </div>

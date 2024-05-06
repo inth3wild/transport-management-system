@@ -51,7 +51,8 @@
 						<div class="row align-items-center">
 							<div class="col-xl-2 col-lg-3 col-11">
 								<a href="{{ url('/')}}" class="logo text-center">
-									<img src="{{ asset('images/peacelogo.png')}}" alt="">
+									<!-- <img src="{{ asset('images/peacelogo.png')}}" alt=""> -->
+									<!-- <img src="{{ asset('images/service/transportation.png')}}" alt=""> -->
 								</a>
 							</div>
 							<div class="col-xl-8 col-lg-6 col-1 text-sm-center">
@@ -118,17 +119,17 @@
 											<div class="intro_layers">
 												<div class="intro_layer animate" data-animation="fadeInDown">
 													<h2 class="text-uppercase intro_featured_word">
-														Peace
+														Kome
 													</h2>
 												</div>
 												<div class="intro_layer animate" data-animation="fadeInUp">
 													<h2 class="text-uppercase intro_featured_word name">
-														Mass Transit
+														Rides
 													</h2>
 												</div>
-												<div class="intro_layer animate" data-animation="fadeIn">
+												<!-- <div class="intro_layer animate" data-animation="fadeIn">
 													<p class="text-uppercase intro_after_featured_word">In God we trust</p>
-												</div>
+												</div> -->
 												<div class="intro_layer page-bottom animate" data-animation="pullDown">
 													<a class="btn btn-maincolor" href="{{ route('register') }}"> Book a Trip</a>
 												</div>
@@ -172,10 +173,10 @@
 									Who We Are
 								</h5>
 								<p>
-									PMT is a Trusted Name in Transportation for 20 Years and counting. PMT provides transportation services for intercity/interstate
-									 travelers in Nigeria.PMT customers can enjoy air conditioned vehicles and light entertainment. Peace Mass Transit Ltd 
-									 offers you the unique service to hire a bus that will take you to anywhere in Nigeria, following your desired journey plan,
-									  schedule and duration at a very affordable price. PMT also provides haulage services for businesses and individuals looking 
+									Kome Rides is a Trusted Name in Transportation for 20 Years and counting. Kome Rides provides transportation services for
+									 travelers in Nigeria. Customers can enjoy air conditioned vehicles and light entertainment. Kome Rides Ltd 
+									 offers you the unique service to hire a vehicle that will take you to anywhere in Nigeria, following your desired journey plan,
+									  schedule and duration at a very affordable price. We also provide haulage services for businesses and individuals looking 
 									  to transport large goods and services or materials within and around Nigerian cities.
 								</p>
 								<div class="divider-30"></div>
@@ -196,14 +197,14 @@
 				<div class="container">
 					<div class="row c-mb-50 c-mb-md-60">
 						<div class="d-none d-lg-block divider-20"></div>
-						<div class="col-12 col-md-6 col-lg-4">
+						<div class="col-12 col-md-6 col-lg-6">
 							<div class="vertical-item text-center">
 								<div class="item-media">
 									<img src="images/service/delivery-man.png" alt="">
 								</div>
 								<div class="item-content">
 									<h6>
-										<a href="service-single1.html">PMT - Logistics</a>
+										<a href="service-single1.html">Kome Rides - Logistics</a>
 									</h6>
 
 									<p>
@@ -214,14 +215,14 @@
 							</div>
 						</div>
 						<!-- .col-* -->
-						<div class="col-12 col-md-6 col-lg-4">
+						<div class="col-12 col-md-6 col-lg-6">
 							<div class="vertical-item text-center">
 								<div class="item-media">
 									<img src="{{ asset('images/service/transportation.png')}}" alt="">
 								</div>
 								<div class="item-content">
 									<h6>
-										<a href="service-single1.html">PMT - Transportation</a>
+										<a href="service-single1.html">Kome Rides - Transportation</a>
 									</h6>
 
 									<p>
@@ -232,14 +233,14 @@
 							</div>
 						</div>
 						<!-- .col-* -->
-						<div class="col-12 col-md-6 col-lg-4">
+						<!-- <div class="col-12 col-md-6 col-lg-4">
 							<div class="vertical-item text-center">
 								<div class="item-media">
 									<img src="{{ asset('images/service/ecommerce.png')}}" alt="">
 								</div>
 								<div class="item-content">
 									<h6>
-										<a href="service-single1.html"> PMT - Ecommerce</a>
+										<a href="service-single1.html">Kome Rides - Ecommerce</a>
 									</h6>
 
 									<p>
@@ -247,7 +248,7 @@
 									</p>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- .col-* -->
 						
 						
@@ -273,11 +274,11 @@
 							<div class="divider-35"></div>
 							<div class="content">
 								<h1>
-									Lets Take you
+									Let's Take you
 									<br> To your destination
 								</h1>
 								<p>
-									We’ll help to reach your destination safe and sound
+									We'll help to reach your destination safe and sound
 								</p>
 								<div class="divider-30"></div>
 							</div>
@@ -365,7 +366,7 @@
 						<div class="row">
 							<div class="divider-20 d-none d-xl-block"></div>
 							<div class="col-md-12 mt-4 text-center animate" data-animation="fadeInUp">
-								<img class="margin-negative" src="images/peacefooter.png" alt="">
+								<!-- <img class="margin-negative" src="images/peacefooter.png" alt=""> -->
 								<div class="widget widget_social_buttons">
 									<a href="http://www.facebook.com/#" class="fa fa-facebook color-icon" title="facebook"></a>
 									<a href="http://www.twitter.com/#" class="fa fa-twitter color-icon" title="twitter"></a>
@@ -386,7 +387,7 @@
 						<div class="divider-20 d-none d-lg-block"></div>
 						<div class="col-md-12 text-center">
 							<p>&copy; Copyright
-								<span class="copyright_year">2021</span> All Rights Reserved</p>
+								<span class="copyright_year">2024</span> All Rights Reserved</p>
 						</div>
 						<div class="divider-20 d-none d-lg-block"></div>
 					</div>
