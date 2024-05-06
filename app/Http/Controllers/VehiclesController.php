@@ -184,7 +184,7 @@ class VehiclesController extends Controller
 
         // Validate request details
         $data = $request->validate([
-            'plate_number' => 'required|min:7|max:8|alpha_num',
+            'plate_number' => 'required',
             'seats' => 'required|digits:2|between:14,25|numeric',
             'driver' => ['required', Rule::unique('vehicles', 'driver_id')->ignore($vehicle->driver_id, 'driver_id')],
             'destination' => 'required',

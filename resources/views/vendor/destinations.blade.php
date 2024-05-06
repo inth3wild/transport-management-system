@@ -83,7 +83,7 @@
       <div class="col-md-4">
           <div class="card">
             
-            <div class="card-body">
+            <!-- <div class="card-body">
                   <h4 class="dispay-4 text-primary">Create New Destination</h4>
 
                 {!! Form::open(['action' => 'App\Http\Controllers\DestinationsController@store', 'method' => 'POST', 'id' => 'newDestinationForm']) !!}
@@ -100,7 +100,7 @@
                   </div>
               {!! Form::close() !!}
               </div>
-          </div>
+          </div> -->
       </div>
   </div>
 </div>
