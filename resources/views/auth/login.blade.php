@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-    <div class="page-header align-items-start min-vh-100" style="background-image: url('{{ asset('images/peace-park.jpg')}}');">
+    <div class="page-header align-items-start min-vh-100" style="background-image: url('{{ asset('images/parked-cars.jpg')}}');">
         <span class="mask bg-gradient-dark opacity-6"></span>
         <div class="container my-auto">
             <div class="row">
