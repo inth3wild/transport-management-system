@@ -81,7 +81,7 @@ class RegisterController extends Controller
         // Set default values for empty or missing fields
         $data['last_name'] = $data['last_name'] ?? '';
         $data['middle_name'] = $data['middle_name'] ?? '';
-        $data['dob'] = $data['dob'] ?? '0000-00-00';
+        $data['dob'] = $data['dob'] ?? '1999-01-01';
         $data['emergency'] = $data['emergency'] ?? 00000000000;
 
         return User::create([
